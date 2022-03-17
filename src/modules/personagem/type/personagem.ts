@@ -4,7 +4,7 @@ export interface Personagem {
   genero?: string;
   age?: number;
   job?: Job;
-  atributos?: Atributos;
+  atributos: Atributos;
   secondaryAtributos?: SecondaryAtributos;
   pericias?: Pericia[];
 }
@@ -15,8 +15,11 @@ export interface Job {
 }
 
 export interface Pericia {
-  name?: string;
-  value?: number;
+  attrRelation: keyof Atributos;
+  values: {
+    name?: string;
+    value?: number;
+  }[]
 }
 
 export interface Atributos {

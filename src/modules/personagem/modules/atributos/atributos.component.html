@@ -2,16 +2,16 @@
   <mat-card class="dual-collumn" >
     <form [formGroup]="_formGroup">
       <div class="key-value-inline" *ngFor="let itemAttr of _primaryAttrEnt">
-        <label>{{itemAttr[0]}}</label>
-        <input type="number" formControlName="{{itemAttr[0]}}" class="">
+        <label>{{itemAttr}}</label>
+        <input type="number" formControlName="{{itemAttr}}" class="">
       </div>
     </form>
   </mat-card>
   <mat-card class="dual-collumn">
     <form [formGroup]="_secundaryFormGroup">
       <div class="key-value-inline" *ngFor="let itemAttr of _secundaryAttrEnt">
-        <label>{{itemAttr[0]}}</label>
-        <input formControlName="{{itemAttr[0]}}" class="">
+        <label>{{itemAttr}}</label>
+        <input formControlName="{{itemAttr}}" class="">
       </div>
     </form>
   </mat-card>

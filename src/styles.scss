@@ -52,3 +52,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   line-height: 0;
 }
 
+.key-value-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & > label {
+    text-transform: uppercase;
+  }
+  &  input {
+    border: none;
+    width: 30%;
+  }
+}
+
+mat-sidenav-content.mat-drawer-content {
+  overflow: hidden;
+}
+
+.mat-tab-body {
+  overflow: auto;
+  max-height: 71vh;
+  box-sizing: border-box
+}

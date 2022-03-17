@@ -1,3 +1,4 @@
+import { PericiasModule } from './modules/pericias/pericias.module';
 import { AtributosModule } from './modules/atributos/atributos.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PersonagemRoutes } from './personagem.routing';
@@ -12,7 +13,8 @@ import { PersonagemComponent } from './personagem.component';
     MainInfoModule,
     PersonagemRoutes,
     MatTabsModule,
-    AtributosModule
+    AtributosModule,
+    PericiasModule
   ],
   declarations: [PersonagemComponent]
 })

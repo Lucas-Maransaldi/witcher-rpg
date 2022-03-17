@@ -1,5 +1,8 @@
-import { Atributos, Personagem, SecondaryAtributos } from './../type/personagem';
 import { Injectable } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
+
+import { Atributos, Personagem, SecondaryAtributos, Pericia } from './../type/personagem';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +34,8 @@ export class PersonagemService {
     }
   };
 
+  private _characterSubscription: BehaviorSubject<Personagem> = new BehaviorSubject(this._selectedCharacter);
+
   constructor() { }
 
   get selectedCharacter(): Personagem {
@@ -43,9 +48,24 @@ export class PersonagemService {
 
   set atributos(atributos: Atributos) {
     this._selectedCharacter.atributos = atributos;
+    this.secundaryGenerate();
   }
 
-  public secundaryGenerate(personagem: Personagem = this._selectedCharacter): Personagem {
+  set pericias(pericias: Pericia[]) {
+    this._selectedCharacter.pericias = pericias;
+    this._uptadeCharacter();
+  }
+
+  get selectedCharacter$(): BehaviorSubject<Personagem> {
+    return this._characterSubscription;
+  }
+
+  private _uptadeCharacter(character: Personagem = this._selectedCharacter): void {
+    this._selectedCharacter = character;
+    this._characterSubscription.next(character);
+  }
+
+  public secundaryGenerate(personagem: Personagem = this._selectedCharacter): void {
     personagem.secondaryAtributos = {} as SecondaryAtributos;
     const fisico = ((personagem.atributos?.corpo || 0) + (personagem.atributos?.von || 0)) / 2;
     personagem.secondaryAtributos.atord = fisico;
@@ -56,7 +76,22 @@ export class PersonagemService {
     personagem.secondaryAtributos.rec = fisico
     personagem.secondaryAtributos.salto = (personagem.atributos?.vel || 0) * 3 / 5;
     personagem.secondaryAtributos.soco = '' // TODO:: switch
-    personagem.secondaryAtributos.chute = ''
-    return personagem;
+    personagem.secondaryAtributos.chute = '';
+    this._uptadeCharacter(personagem);
+  }
+
+  private _generateFormControlToAtributes(attributesToBeMapped: Atributos | SecondaryAtributos | undefined) {
+    const attributes = Object.entries(attributesToBeMapped || {});
+    return Object.fromEntries(
+      attributes.map(keyValue => {
+        keyValue[1] = new FormControl(keyValue[1]);
+        return keyValue;
+      })
+    );
+  }
+
+  public generateAttrFormGroup(type: 'primary' | 'secundary'): FormGroup {
+    const attributesToBeMapped = (type === 'primary') ? this._selectedCharacter.atributos : this._selectedCharacter.secondaryAtributos;
+    return new FormGroup(this._generateFormControlToAtributes(attributesToBeMapped));
   }
 }

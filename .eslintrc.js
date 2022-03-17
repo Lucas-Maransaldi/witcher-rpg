@@ -11,6 +11,7 @@ module.exports = {
   ],
   rules: {
     "no-empty-function": "off",
-  "@typescript-eslint/no-empty-function": ["error", {"allow": ["constructors"]}]
+    "@typescript-eslint/no-empty-function": ["error", {"allow": ["constructors"]}],
+    "@typescript-eslint/no-explicit-any": "off"
   }
 };
