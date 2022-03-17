@@ -1,0 +1,28 @@
+.dual-collumn {
+  width: calc(50% - 8px);
+  margin-top: 0px;
+}
+
+.key-value-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & > label {
+    text-transform: uppercase;
+  }
+  & > input {
+    border: none;
+    width: 30%;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  outline: none;
+}

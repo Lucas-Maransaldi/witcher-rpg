@@ -1,0 +1,18 @@
+<div class="p-3 d-flex justify-content-between">
+  <mat-card class="dual-collumn" >
+    <form [formGroup]="_formGroup">
+      <div class="key-value-inline" *ngFor="let itemAttr of _primaryAttrEnt">
+        <label>{{itemAttr[0]}}</label>
+        <input type="number" formControlName="{{itemAttr[0]}}" class="">
+      </div>
+    </form>
+  </mat-card>
+  <mat-card class="dual-collumn">
+    <form [formGroup]="_secundaryFormGroup">
+      <div class="key-value-inline" *ngFor="let itemAttr of _secundaryAttrEnt">
+        <label>{{itemAttr[0]}}</label>
+        <input formControlName="{{itemAttr[0]}}" class="">
+      </div>
+    </form>
+  </mat-card>
+</div>

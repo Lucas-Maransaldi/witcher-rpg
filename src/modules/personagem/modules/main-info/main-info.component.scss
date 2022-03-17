@@ -1,0 +1,11 @@
+.key-value-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & > input {
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    margin-left: 1rem;
+  }
+}

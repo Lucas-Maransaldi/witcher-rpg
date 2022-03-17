@@ -1,0 +1,4 @@
+<div (mouseleave)="opened = false">
+  <input (mouseenter)="opened = true">
+  <button mat-mini-fab class="hover-buttom" [ngClass]="{'open': opened}"><mat-icon>edit</mat-icon></button>
+</div>
